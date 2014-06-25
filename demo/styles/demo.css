@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#page-wrapper {
+  margin-top: 40px;
+}
+#page-wrapper .page-inner {
+  padding: 30px;
+}

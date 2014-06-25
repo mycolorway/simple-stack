@@ -1,0 +1,93 @@
+.simple-stack {
+  position: relative;
+  width: 902px;
+  margin: 0 auto;
+}
+.simple-stack .page {
+  width: 900px;
+  min-height: 500px;
+  border: 1px solid #cccccc;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  background: #ffffff;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.simple-stack .page.page-behind {
+  border: 1px solid #dddddd;
+  transform: scale(0.985);
+  -webkit-transform: scale(0.985);
+  box-shadow: none;
+}
+.simple-stack .page.page-behind > a {
+  display: block;
+  padding: 0 30px;
+  line-height: 46px;
+  line-height: 46px;
+  font-size: 18px;
+  color: #888888;
+  background: #f9f9f9;
+}
+.simple-stack .page.page-behind > a:hover {
+  background: #ffffff;
+}
+.simple-stack .page.page-1 {
+  top: 46px;
+}
+.simple-stack .page.page-1.page-behind {
+  top: 44px;
+}
+.simple-stack .page.page-2 {
+  top: 92px;
+}
+.simple-stack .page.page-2.page-behind {
+  top: 90px;
+}
+.simple-stack .page.page-3 {
+  top: 138px;
+}
+.simple-stack .page.page-3.page-behind {
+  top: 136px;
+}
+.simple-stack .page.page-4 {
+  top: 184px;
+}
+.simple-stack .page.page-4.page-behind {
+  top: 182px;
+}
+.simple-stack .page.page-5 {
+  top: 230px;
+}
+.simple-stack .page.page-5.page-behind {
+  top: 228px;
+}
+.simple-stack .page.page-6 {
+  top: 276px;
+}
+.simple-stack .page.page-6.page-behind {
+  top: 274px;
+}
+.simple-stack .page.page-7 {
+  top: 322px;
+}
+.simple-stack .page.page-7.page-behind {
+  top: 320px;
+}
+.simple-stack .page.page-8 {
+  top: 368px;
+}
+.simple-stack .page.page-8.page-behind {
+  top: 366px;
+}
+.simple-stack .page.page-9 {
+  top: 414px;
+}
+.simple-stack .page.page-9.page-behind {
+  top: 412px;
+}
+.simple-stack .page.page-10 {
+  top: 460px;
+}
+.simple-stack .page.page-10.page-behind {
+  top: 458px;
+}

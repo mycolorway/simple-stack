@@ -1,0 +1,41 @@
+<% unless @pjax : %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>第一页</title>
+
+    <link rel="stylesheet" href="/styles/stack.css" type="text-css" />
+    <link rel="stylesheet" href="/demo/styles/demo.css" type="text-css" />
+
+    <script type="text/javascript" src="/vendor/bower/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/bower/simple-module/lib/module.js"></script>
+    <script type="text/javascript" src="/vendor/bower/simple-url/lib/url.js"></script>
+    <script type="text/javascript" src="/vendor/bower/simple-pjax/lib/pjax.js"></script>
+    <script type="text/javascript" src="/lib/stack.js"></script>
+    <script type="text/javascript" src="/demo/scripts/demo.js"></script>
+</head>
+<body>
+
+<div id="page-wrapper">
+    <div class="page">
+<% end %>
+
+    <div class="page-inner" id="page-first" data-page-name="第一页">
+        <ul class="nav">
+            <li class="active"><a href="/" data-stack>第一页</a></li>
+            <li><a href="/page-2/" data-stack data-stack-root data-parent-name="第一页" data-parent-url="/">第二页</a></li>
+            <li><a href="/page-3/" data-stack data-stack-replace>第三页</a></li>
+        </ul>
+
+        <p>第一页的内容</p>
+    </div>
+
+<% unless @pjax : %>
+    </div>
+</div>
+
+</body>
+</html>
+<% end %>
+

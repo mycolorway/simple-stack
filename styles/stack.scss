@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+$stack-header-height: 46px;
+
+.simple-stack {
+  position: relative;
+  width: 902px;
+  margin: 0 auto;
+
+  .page {
+    width: 900px;
+    min-height: 500px;
+    border: 1px solid #cccccc;
+    box-shadow: 0 0 6px rgba(0,0,0,0.15);
+    background: #ffffff;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &.page-behind {
+      border: 1px solid #dddddd;
+      transform: scale(0.985);
+      -webkit-transform: scale(0.985);
+      box-shadow: none;
+
+      & > a {
+        display: block;
+        padding: 0 30px;
+        line-height: $stack-header-height;
+        line-height: $stack-header-height;
+        font-size: 18px;
+        color: #888888;
+        background: #f9f9f9;
+
+        &:hover {
+          background: #ffffff;
+        }
+      }
+    }
+
+    @for $i from 1 through 10 {
+      &.page-#{$i} {
+        top: $stack-header-height * $i;
+
+        &.page-behind {
+          top: $stack-header-height * $i - 2px;
+        }
+      }
+    }
+
+
+  }
+}

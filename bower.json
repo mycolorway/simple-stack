@@ -1,0 +1,31 @@
+{
+	"name": "simple-stack",
+	"version": "1.0.0",
+	"homepage": "https://github.com/mycolorway/simple-stack",
+	"authors": [
+		"farthinker <farthinker@gmail.com>"
+	],
+	"description": "stack layout component",
+	"main": "lib/stack.js",
+	"keywords": [
+		"stack",
+		"pjax"
+	],
+	"license": "MIT",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"vendor",
+		"Gemfile",
+		"Gruntfile.coffee",
+		"package.json",
+		"server.js",
+		"README"
+	],
+	"dependencies": {
+		"jquery": "~2.1.0",
+		"simple-module": "master",
+		"simple-pjax": "master",
+		"simple-url": "master"
+	}
+}
