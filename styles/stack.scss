@@ -16,26 +16,36 @@ $stack-header-height: 46px;
     position: absolute;
     top: 0;
     left: 0;
+    opacity: 1;
+    transform: scale(1);
+    -webkit-transform: scale(1);
 
     &.page-behind {
       border: 1px solid #dddddd;
+      background: #f9f9f9;
       transform: scale(0.985);
       -webkit-transform: scale(0.985);
-      box-shadow: none;
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
 
-      & > a {
-        display: block;
-        padding: 0 30px;
-        line-height: $stack-header-height;
-        line-height: $stack-header-height;
-        font-size: 18px;
-        color: #888888;
-        background: #f9f9f9;
+    & > a.link-page-behind {
+      display: block;
+      padding: 0 30px;
+      line-height: $stack-header-height;
+      line-height: $stack-header-height;
+      font-size: 18px;
+      color: #888888;
+      background: #f9f9f9;
 
-        &:hover {
-          background: #ffffff;
-        }
+      &:hover {
+        background: #ffffff;
       }
+    }
+
+    &.transition-start {
+      opacity: 0;
+      transform: scale(1.05);
+      -webkit-transform: scale(1.05);
     }
 
     @for $i from 1 through 10 {
@@ -47,7 +57,12 @@ $stack-header-height: 46px;
         }
       }
     }
+  }
 
-
+  &.simple-stack-transition .page {
+    transition-property: top, opacity, transform, box-shadow, border-color;
+    transition-duration: 200ms;
+    -webkit-transition-property: top, opacity, -webkit-transform, box-shadow, border-color;
+    -webkit-transition-duration: 200ms;
   }
 }

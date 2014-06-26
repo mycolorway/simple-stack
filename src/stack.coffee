@@ -3,6 +3,8 @@ class Stack extends Widget
 
   opts:
     el: null
+    transition: true
+    slowTime: 800
 
   supportHistory: !!(window.history && history.pushState)
 
@@ -11,6 +13,8 @@ class Stack extends Widget
 
     @el = if @opts.el then $(@opts.el) else $('body')
     @el.addClass 'simple-stack'
+    @el.addClass 'simple-stack-transition' if @opts.transition
+
     @stack = []
     @_initStack()
     @currentPage.loadPage()
@@ -30,7 +34,9 @@ class Stack extends Widget
         $page.nextAll('.page').remove()
         @stack = @stack.slice(0, level + 1)
         @currentPage = page
+        @currentPage.el.empty()
         @currentPage.el.removeClass 'page-behind'
+
         @currentPage.load url,
           nocache: $link.is '[data-stack-nocache]'
         return
@@ -85,6 +91,7 @@ class Stack extends Widget
       el: $page
       autoload: false
       history: false
+      slowTime: @opts.slowTime
 
     pjax.on 'pushstate.pjax', (e, state) =>
       state.html = @el.html()
@@ -112,7 +119,7 @@ class Stack extends Widget
       $page = $('<div class="page" />')
 
       if opts.parent
-        $parent = $('<div class="page"><a data-stack></a></div>')
+        $parent = $('<div class="page"><a class="link-page-behind" data-stack></a></div>')
           .appendTo(@el)
           .after($page)
         $parent.find('a')
@@ -126,17 +133,25 @@ class Stack extends Widget
         nocache: opts.nocache
     else
       @currentPage.unload()
-      @currentPage.el.addClass 'page-behind'
+      prevPage = @currentPage
       $('<a/>', 
+        'class': 'link-page-behind'
         'data-stack': ''
         href: simple.url().toString('relative')
         text: document.title
       ).appendTo @currentPage.el
 
-      $page = $('<div class="page"/>').appendTo(@el)
+      $page = $('<div class="page"/>')
+        .addClass('transition-start')
+        .appendTo(@el)
       pjax = @_initPage $page
       @stack.push pjax
       @currentPage = pjax
+
+      @currentPage.el[0].offsetHeight # force dom reflow
+      prevPage.el.addClass 'page-behind'
+      @currentPage.el.removeClass 'transition-start'
+
       @currentPage.load url,
         nocache: opts.nocache
 

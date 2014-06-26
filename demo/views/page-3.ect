@@ -22,19 +22,60 @@
         <a href="/" data-stack>第一页</a>
     </div>
     <div class="page">
-        <a href="/" data-stack>第一页</a>
+        <a href="/page-2/" data-stack>第二页</a>
     </div>
     <div class="page">
 <% end %>
 
         <div class="page-inner" id="page-third" data-page-name="第三页">
             <ul class="nav">
-                <li><a href="/" data-stack>第一页</a></li>
-                <li><a href="/page-2/" data-stack data-stack-root data-parent-name="第一页" data-parent-url="/">第二页</a></li>
-                <li class="active"><a href="/page-3/" data-stack data-stack-replace>第三页</a></li>
+                <li><a href="/" data-stack>第一页</a>：普通stack链接</li>
+                <li><a href="/page-2/" data-stack data-stack-root data-parent-name="第一页" data-parent-url="/">第二页</a>：data-stack-root，parent是第一页</li>
+                <li class="active"><a href="/page-3/#hash-test" data-stack data-stack-replace>第三页</a>：data-stack-replace，带hash</li>
             </ul>
 
-            <p>第三页的内容</p>
+            <p>
+                第三页的内容
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <span id="hash-test">这是一个id是hash-test的元素</span>
+            </p>
+
         </div>
 
 <% unless @pjax : %>

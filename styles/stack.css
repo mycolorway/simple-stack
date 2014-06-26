@@ -12,14 +12,18 @@
   position: absolute;
   top: 0;
   left: 0;
+  opacity: 1;
+  transform: scale(1);
+  -webkit-transform: scale(1);
 }
 .simple-stack .page.page-behind {
   border: 1px solid #dddddd;
+  background: #f9f9f9;
   transform: scale(0.985);
   -webkit-transform: scale(0.985);
-  box-shadow: none;
+  box-shadow: 0 0 0 transparent;
 }
-.simple-stack .page.page-behind > a {
+.simple-stack .page > a.link-page-behind {
   display: block;
   padding: 0 30px;
   line-height: 46px;
@@ -28,8 +32,13 @@
   color: #888888;
   background: #f9f9f9;
 }
-.simple-stack .page.page-behind > a:hover {
+.simple-stack .page > a.link-page-behind:hover {
   background: #ffffff;
+}
+.simple-stack .page.transition-start {
+  opacity: 0;
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
 }
 .simple-stack .page.page-1 {
   top: 46px;
@@ -90,4 +99,10 @@
 }
 .simple-stack .page.page-10.page-behind {
   top: 458px;
+}
+.simple-stack.simple-stack-transition .page {
+  transition-property: top, opacity, transform, box-shadow, border-color;
+  transition-duration: 200ms;
+  -webkit-transition-property: top, opacity, -webkit-transform, box-shadow, border-color;
+  -webkit-transition-duration: 200ms;
 }

@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <title>第二页</title>
 
-    <link rel="stylesheet" href="/styles/stack.css" type="text-css" />
-    <link rel="stylesheet" href="/demo/styles/demo.css" type="text-css" />
+    <link rel="stylesheet" href="/styles/stack.css" type="text/css" />
+    <link rel="stylesheet" href="/demo/styles/demo.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/bower/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="/vendor/bower/simple-module/lib/module.js"></script>
@@ -26,9 +26,9 @@
 
         <div class="page-inner" id="page-second" data-page-name="第二页">
             <ul class="nav">
-                <li><a href="/" data-stack>第一页</a></li>
-                <li class="active"><a href="/page-2/" data-stack data-stack-root data-parent-name="第一页" data-parent-url="/">第二页</a></li>
-                <li><a href="/page-3/" data-stack data-stack-replace>第三页</a></li>
+                <li><a href="/" data-stack>第一页</a>：普通stack链接</li>
+                <li class="active"><a href="/page-2/" data-stack data-stack-root data-parent-name="第一页" data-parent-url="/">第二页</a>：data-stack-root，parent是第一页</li>
+                <li><a href="/page-3/#hash-test" data-stack data-stack-replace>第三页</a>：data-stack-replace，带hash</li>
             </ul>
 
             <p>第二页的内容</p>
