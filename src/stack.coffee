@@ -64,7 +64,8 @@ class Stack extends Widget
       @el.html state.html
       document.title = state.name
       @_initStack()
-      @currentPage.requestPage state
+      #@currentPage.requestPage state
+      @currentPage.loadPage()
 
 
   _initStack: () ->
