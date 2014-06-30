@@ -30,7 +30,7 @@ class Stack extends Widget
       page = $page.data 'pjax'
 
       if page != @currentPage
-        @currentPage.unload()
+        return false if @currentPage.unload() == false
         $page.nextAll('.page').remove()
         @stack = @stack.slice(0, level + 1)
         @currentPage = page
@@ -99,6 +99,12 @@ class Stack extends Widget
     pjax.on 'replacestate.pjax', (e, state) =>
       state.html = @el.html()
 
+    pjax.on 'pjaxload', (e, $page, page) =>
+      @trigger 'pageload', [$page, page]
+
+    pjax.on 'pjaxunload', (e, $page, page) =>
+      @trigger 'pageunload', [$page, page]
+
     $page.data 'pjax', pjax
     pjax
 
@@ -128,7 +134,7 @@ class Stack extends Widget
       @currentPage.load url,
         nocache: opts.nocache
     else
-      @currentPage.unload()
+      return false if @currentPage.unload() == false
       prevPage = @currentPage
       $('<a/>', 
         'class': 'link-page-behind'

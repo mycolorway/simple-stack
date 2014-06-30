@@ -2,6 +2,7 @@
   position: relative;
   width: 902px;
   margin: 0 auto;
+  overflow: hidden;
 }
 .simple-stack .page {
   width: 900px;
@@ -9,9 +10,6 @@
   border: 1px solid #cccccc;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
   background: #ffffff;
-  position: absolute;
-  top: 0;
-  left: 0;
   opacity: 1;
   transform: scale(1);
   -webkit-transform: scale(1);
@@ -22,6 +20,9 @@
   transform: scale(0.985);
   -webkit-transform: scale(0.985);
   box-shadow: 0 0 0 transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .simple-stack .page > a.link-page-behind {
   display: block;
@@ -36,69 +37,79 @@
   background: #ffffff;
 }
 .simple-stack .page.transition-start {
-  opacity: 0;
-  transform: scale(1.05);
-  -webkit-transform: scale(1.05);
+  /*opacity: 0;*/
+  /*transform: scale(1.05);*/
+  /*-webkit-transform: scale(1.05);*/
 }
 .simple-stack .page.page-1 {
-  top: 46px;
+  margin-top: 46px;
 }
 .simple-stack .page.page-1.page-behind {
   top: 44px;
+  margin-top: 0;
 }
 .simple-stack .page.page-2 {
-  top: 92px;
+  margin-top: 92px;
 }
 .simple-stack .page.page-2.page-behind {
   top: 90px;
+  margin-top: 0;
 }
 .simple-stack .page.page-3 {
-  top: 138px;
+  margin-top: 138px;
 }
 .simple-stack .page.page-3.page-behind {
   top: 136px;
+  margin-top: 0;
 }
 .simple-stack .page.page-4 {
-  top: 184px;
+  margin-top: 184px;
 }
 .simple-stack .page.page-4.page-behind {
   top: 182px;
+  margin-top: 0;
 }
 .simple-stack .page.page-5 {
-  top: 230px;
+  margin-top: 230px;
 }
 .simple-stack .page.page-5.page-behind {
   top: 228px;
+  margin-top: 0;
 }
 .simple-stack .page.page-6 {
-  top: 276px;
+  margin-top: 276px;
 }
 .simple-stack .page.page-6.page-behind {
   top: 274px;
+  margin-top: 0;
 }
 .simple-stack .page.page-7 {
-  top: 322px;
+  margin-top: 322px;
 }
 .simple-stack .page.page-7.page-behind {
   top: 320px;
+  margin-top: 0;
 }
 .simple-stack .page.page-8 {
-  top: 368px;
+  margin-top: 368px;
 }
 .simple-stack .page.page-8.page-behind {
   top: 366px;
+  margin-top: 0;
 }
 .simple-stack .page.page-9 {
-  top: 414px;
+  margin-top: 414px;
 }
 .simple-stack .page.page-9.page-behind {
   top: 412px;
+  margin-top: 0;
 }
 .simple-stack .page.page-10 {
-  top: 460px;
+  margin-top: 460px;
 }
 .simple-stack .page.page-10.page-behind {
   top: 458px;
+  margin-top: 0;
 }
 .simple-stack.simple-stack-transition .page {
   transition-property: top, opacity, transform, box-shadow, border-color;

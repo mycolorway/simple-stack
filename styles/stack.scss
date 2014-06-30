@@ -6,6 +6,7 @@ $stack-header-height: 46px;
   position: relative;
   width: 902px;
   margin: 0 auto;
+  overflow: hidden;
 
   .page {
     width: 900px;
@@ -13,9 +14,6 @@ $stack-header-height: 46px;
     border: 1px solid #cccccc;
     box-shadow: 0 0 6px rgba(0,0,0,0.15);
     background: #ffffff;
-    position: absolute;
-    top: 0;
-    left: 0;
     opacity: 1;
     transform: scale(1);
     -webkit-transform: scale(1);
@@ -26,6 +24,9 @@ $stack-header-height: 46px;
       transform: scale(0.985);
       -webkit-transform: scale(0.985);
       box-shadow: 0 0 0 rgba(0,0,0,0);
+      position: absolute;
+      top: 0;
+      left: 0;
     }
 
     & > a.link-page-behind {
@@ -43,17 +44,18 @@ $stack-header-height: 46px;
     }
 
     &.transition-start {
-      opacity: 0;
-      transform: scale(1.05);
-      -webkit-transform: scale(1.05);
+      /*opacity: 0;*/
+      /*transform: scale(1.05);*/
+      /*-webkit-transform: scale(1.05);*/
     }
 
     @for $i from 1 through 10 {
       &.page-#{$i} {
-        top: $stack-header-height * $i;
+        margin-top: $stack-header-height * $i;
 
         &.page-behind {
           top: $stack-header-height * $i - 2px;
+          margin-top: 0;
         }
       }
     }
