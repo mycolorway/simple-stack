@@ -95,13 +95,9 @@ class Stack extends Widget
 
     pjax.on 'pushstate.pjax', (e, state) =>
       state.html = @el.html()
-      history.pushState state, state.name, state.url
-      document.title = state.name
 
     pjax.on 'replacestate.pjax', (e, state) =>
       state.html = @el.html()
-      history.replaceState state, state.name, state.url
-      document.title = state.name
 
     $page.data 'pjax', pjax
     pjax
