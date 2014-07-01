@@ -115,6 +115,18 @@ class Stack extends Widget
       @currentPage.request = null
 
     if opts.replace
+      for page, i in @stack
+        $link = page.el.find '.link-page-behind'
+        pageUrl = simple.url $link.attr('href')
+        if pageUrl.pathname == url.pathname and page != @currentPage
+          return false if @currentPage.unload() == false
+          page.el.nextAll('.page').remove()
+          @stack = @stack.slice(0, i + 1)
+          @currentPage = page
+          @currentPage.el.empty()
+          @currentPage.el.removeClass 'page-behind'
+          break
+
       @currentPage.load url,
         nocache: opts.nocache
     else if opts.root
