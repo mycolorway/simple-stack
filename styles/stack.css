@@ -2,7 +2,11 @@
   position: relative;
   width: 902px;
   margin: 0 auto;
-  overflow: hidden;
+}
+.simple-stack:before {
+  content: "";
+  display: table;
+  clear: both;
 }
 .simple-stack .page {
   width: 900px;
