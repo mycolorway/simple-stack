@@ -19,14 +19,18 @@ class Stack extends Widget
     @_initStack()
     @currentPage.loadPage()
 
-    @el.on 'click', 'a[data-stack]', (e) =>
+    $(document).off('click.stack').on 'click.stack', 'a[data-stack]', (e) =>
       e.preventDefault()
       $link = $(e.currentTarget)
       url = simple.url $link.attr 'href'
       return unless url
 
+      $pages = @el.find '.page'
+      return unless $pages.length > 0
+
       $page = $link.closest('.page')
-      level = @el.find('.page').index $page
+      $page = $pages.last() unless $page.length > 0
+      level = $pages.index $page
       page = $page.data 'pjax'
 
       if page != @currentPage
@@ -110,6 +114,9 @@ class Stack extends Widget
     pjax
 
   load: (url, opts) ->
+    if typeof url == 'string'
+      url = simple.url url
+
     if @currentPage.request
       @currentPage.request.abort()
       @currentPage.request = null
