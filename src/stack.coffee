@@ -121,12 +121,14 @@ class Stack extends Widget
       @currentPage.request.abort()
       @currentPage.request = null
 
+    return false if @currentPage.unload() == false
+
     if opts.replace
       for page, i in @stack
+        continue if page == @currentPage
         $link = page.el.find '.link-page-behind'
         pageUrl = simple.url $link.attr('href')
-        if pageUrl.pathname == url.pathname and page != @currentPage
-          return false if @currentPage.unload() == false
+        if pageUrl.pathname == url.pathname
           page.el.nextAll('.page').remove()
           @stack = @stack.slice(0, i + 1)
           @currentPage = page
@@ -154,7 +156,6 @@ class Stack extends Widget
       @currentPage.load url,
         nocache: opts.nocache
     else
-      return false if @currentPage.unload() == false
       prevPage = @currentPage
       $('<a/>', 
         'class': 'link-page-behind'
