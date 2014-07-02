@@ -11,7 +11,9 @@ class Stack extends Widget
   _init: ->
     return unless @supportHistory
 
-    @el = if @opts.el then $(@opts.el) else $('body')
+    @el = $(@opts.el)
+    return unless @el.length > 0
+
     @el.addClass 'simple-stack'
     @el.addClass 'simple-stack-transition' if @opts.transition
 
