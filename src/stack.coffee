@@ -3,8 +3,10 @@ class Stack extends Widget
 
   opts:
     el: null
+    title: '{{ name }}'
     transition: true
     slowTime: 800
+    fluid: false
 
   supportHistory: !!(window.history && history.pushState)
 
@@ -14,7 +16,10 @@ class Stack extends Widget
     @el = $(@opts.el)
     return unless @el.length > 0
 
+    @opts.fluid = true if @el.is '[data-stack-fluid]'
+
     @el.addClass 'simple-stack'
+    @el.addClass 'simple-stack-fluid' if @opts.fluid
     @el.addClass 'simple-stack-transition' if @opts.transition
 
     @stack = []
@@ -37,25 +42,33 @@ class Stack extends Widget
 
       if page != @currentPage
         return false if @currentPage.unload() == false
+        if $page.hasClass('page-root') and $link.is('[data-stack-fluid]')
+          @el.addClass 'simple-stack-fluid'
+
         $page.nextAll('.page').remove()
         @stack = @stack.slice(0, level + 1)
         @currentPage = page
         @currentPage.el.empty()
         @currentPage.el.removeClass 'page-behind'
 
+
         @currentPage.load url,
           nocache: $link.is '[data-stack-nocache]'
+          norefresh: $link.is '[data-stack-norefresh]'
         return
 
       if $link.is '[data-parent-name][data-parent-url]'
         parent =
           name: $link.data 'parent-name'
           url: $link.data 'parent-url'
+          fluid: $link.is '[data-parent-fluid]'
 
       @load url,
         nocache: $link.is '[data-stack-nocache]'
-        root: $link.is '[data-stack-root]'
         replace: $link.is '[data-stack-replace]'
+        norefresh: $link.is '[data-stack-norefresh]'
+        root: $link.is '[data-stack-root]'
+        fluid: $link.is '[data-stack-fluid]'
         parent: parent
 
 
@@ -68,7 +81,7 @@ class Stack extends Widget
         @currentPage.request = null
 
       @el.html state.html
-      document.title = state.name
+      document.title = @opts.title.replace '{{ name }}', state.name
       @_initStack()
       #@currentPage.requestPage state
       @currentPage.loadPage()
@@ -96,6 +109,7 @@ class Stack extends Widget
 
     pjax = simple.pjax
       el: $page
+      title: @opts.title
       autoload: false
       history: false
       slowTime: @opts.slowTime
@@ -123,9 +137,9 @@ class Stack extends Widget
       @currentPage.request.abort()
       @currentPage.request = null
 
-    return false if @currentPage.unload() == false
 
     if opts.replace
+      return false if @currentPage.unload() == false
       for page, i in @stack
         continue if page == @currentPage
         $link = page.el.find '.link-page-behind'
@@ -140,31 +154,46 @@ class Stack extends Widget
 
       @currentPage.load url,
         nocache: opts.nocache
+        norefresh: opts.norefresh
     else if opts.root
+      return false if @currentPage.unload() == false
       @el.empty()
+      @el.toggleClass 'simple-stack-fluid', opts.fluid
       $page = $('<div class="page" />')
 
       if opts.parent
         $parent = $('<div class="page"><a class="link-page-behind" data-stack></a></div>')
           .appendTo(@el)
           .after($page)
-        $parent.find('a')
+        $link = $parent.find('a')
           .text(opts.parent.name)
           .attr('href', simple.url().toString('relative'))
+
+        $link.attr('data-stack-fluid', '') if opts.parent.fluid
       else
         $page.appendTo @el
 
       @_initStack()
       @currentPage.load url,
         nocache: opts.nocache
+        norefresh: opts.norefresh
     else
       prevPage = @currentPage
-      $('<a/>', 
+      $prevPage = prevPage.el.children('.page')
+      prevPageName = $prevPage.data('page-name')
+
+      return false if @currentPage.unload() == false
+
+      $link = $('<a/>', 
         'class': 'link-page-behind'
         'data-stack': ''
         href: simple.url().toString('relative')
-        text: document.title
+        text: prevPageName || document.title
       ).appendTo @currentPage.el
+
+      if @el.hasClass 'simple-stack-fluid'
+        $link.attr 'data-stack-fluid', ''
+        @el.removeClass 'simple-stack-fluid'
 
       $page = $('<div class="page"/>')
         .addClass('transition-start')
@@ -179,6 +208,7 @@ class Stack extends Widget
 
       @currentPage.load url,
         nocache: opts.nocache
+        norefresh: opts.norefresh
 
 
 window.simple ||= {}

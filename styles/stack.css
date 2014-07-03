@@ -1,6 +1,6 @@
 .simple-stack {
   position: relative;
-  width: 902px;
+  width: 962px;
   margin: 0 auto;
 }
 .simple-stack:before {
@@ -9,10 +9,10 @@
   clear: both;
 }
 .simple-stack .page {
-  width: 900px;
-  min-height: 500px;
-  border: 1px solid #cccccc;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  width: 960px;
+  min-height: 800px;
+  border: 1px solid #dbdfd6;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
   background: #ffffff;
   opacity: 1;
   transform: scale(1);
@@ -23,7 +23,7 @@
   background: #f9f9f9;
   transform: scale(0.985);
   -webkit-transform: scale(0.985);
-  box-shadow: 0 0 0 transparent;
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.05);
   position: absolute;
   top: 0;
   left: 0;
@@ -114,6 +114,15 @@
 .simple-stack .page.page-10.page-behind {
   top: 458px;
   margin-top: 0;
+}
+.simple-stack.simple-stack-fluid {
+  width: auto;
+}
+.simple-stack.simple-stack-fluid .page {
+  width: auto;
+  border: none;
+  box-shadow: none;
+  background: none;
 }
 .simple-stack.simple-stack-transition .page {
   transition-property: top, opacity, transform, box-shadow, border-color;
