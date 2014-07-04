@@ -10,7 +10,7 @@
 }
 .simple-stack .page {
   width: 960px;
-  min-height: 800px;
+  min-height: 600px;
   border: 1px solid #dbdfd6;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
   background: #ffffff;
@@ -28,6 +28,9 @@
   top: 0;
   left: 0;
 }
+.simple-stack .page.pjax-loading {
+  height: 9999px;
+}
 .simple-stack .page > a.link-page-behind {
   display: block;
   padding: 0 30px;
@@ -44,6 +47,9 @@
   /*opacity: 0;*/
   /*transform: scale(1.05);*/
   /*-webkit-transform: scale(1.05);*/
+}
+.simple-stack .page.page-root.page-behind {
+  top: -2px;
 }
 .simple-stack .page.page-1 {
   margin-top: 46px;

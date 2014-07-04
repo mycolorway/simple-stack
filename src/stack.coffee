@@ -20,11 +20,13 @@ class Stack extends Widget
 
     @el.addClass 'simple-stack'
     @el.addClass 'simple-stack-fluid' if @opts.fluid
-    @el.addClass 'simple-stack-transition' if @opts.transition
 
     @stack = []
     @_initStack()
     @currentPage.loadPage()
+
+    @el[0].offsetHeight # force reflow
+    @el.addClass 'simple-stack-transition' if @opts.transition
 
     $(document).off('click.stack').on 'click.stack', 'a[data-stack]', (e) =>
       e.preventDefault()
@@ -55,6 +57,7 @@ class Stack extends Widget
         @currentPage.load url,
           nocache: $link.is '[data-stack-nocache]'
           norefresh: $link.is '[data-stack-norefresh]'
+          scrollPosition: true
         return
 
       if $link.is '[data-parent-name][data-parent-url]'
@@ -179,7 +182,7 @@ class Stack extends Widget
         norefresh: opts.norefresh
     else
       prevPage = @currentPage
-      $prevPage = prevPage.el.children('.page')
+      $prevPage = prevPage.el.children().first()
       prevPageName = $prevPage.data('page-name')
 
       return false if @currentPage.unload() == false

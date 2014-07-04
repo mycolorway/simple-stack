@@ -16,7 +16,7 @@ $stack-header-height: 46px;
 
   .page {
     width: 960px;
-    min-height: 800px;
+    min-height: 600px;
     border: 1px solid #dbdfd6;
     box-shadow: 0 0 5px rgba(0,0,0,0.15);
     background: #ffffff;
@@ -33,6 +33,10 @@ $stack-header-height: 46px;
       position: absolute;
       top: 0;
       left: 0;
+    }
+
+    &.pjax-loading {
+      height: 9999px;
     }
 
     & > a.link-page-behind {
@@ -53,6 +57,10 @@ $stack-header-height: 46px;
       /*opacity: 0;*/
       /*transform: scale(1.05);*/
       /*-webkit-transform: scale(1.05);*/
+    }
+
+    &.page-root.page-behind {
+      top: -2px;
     }
 
     @for $i from 1 through 10 {
