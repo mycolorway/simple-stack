@@ -21,8 +21,9 @@ $stack-header-height: 46px;
     box-shadow: 0 0 5px rgba(0,0,0,0.15);
     background: #ffffff;
     opacity: 1;
-    transform: scale(1);
-    -webkit-transform: scale(1);
+    position: relative;
+    transform: none;
+    -webkit-transform: none;
 
     &.page-behind {
       border: 1px solid #dddddd;

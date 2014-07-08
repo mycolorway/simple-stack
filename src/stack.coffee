@@ -84,6 +84,7 @@ class Stack extends Widget
         @currentPage.request = null
 
       @el.html state.html
+      @el.toggleClass 'simple-stack-fluid', state.fluid
       document.title = @opts.title.replace '{{ name }}', state.name
       @_initStack()
       #@currentPage.requestPage state
@@ -119,9 +120,11 @@ class Stack extends Widget
 
     pjax.on 'pushstate.pjax', (e, state) =>
       state.html = @el.html()
+      state.fluid = @el.hasClass('simple-stack-fluid')
 
     pjax.on 'replacestate.pjax', (e, state) =>
       state.html = @el.html()
+      state.fluid = @el.hasClass('simple-stack-fluid')
 
     pjax.on 'pjaxload', (e, $page, page) =>
       @trigger 'pageload', [$page, page]
@@ -161,7 +164,7 @@ class Stack extends Widget
     else if opts.root
       return false if @currentPage.unload() == false
       @el.empty()
-      @el.toggleClass 'simple-stack-fluid', opts.fluid
+      @el.toggleClass 'simple-stack-fluid', opts.fluid || false
       $page = $('<div class="page" />')
 
       if opts.parent
@@ -170,7 +173,7 @@ class Stack extends Widget
           .after($page)
         $link = $parent.find('a')
           .text(opts.parent.name)
-          .attr('href', simple.url().toString('relative'))
+          .attr('href', opts.parent.url)
 
         $link.attr('data-stack-fluid', '') if opts.parent.fluid
       else
@@ -213,9 +216,15 @@ class Stack extends Widget
         nocache: opts.nocache
         norefresh: opts.norefresh
 
+  @clearCache: (url) ->
+    simple.pjax.clearCache url
+
+
 
 window.simple ||= {}
 
 simple.stack = (opts) ->
   new Stack(opts)
+
+simple.stack.clearCache = Stack.clearCache
 
