@@ -85,9 +85,8 @@ class Stack extends Widget
 
       @el.html state.html
       @el.toggleClass 'simple-stack-fluid', state.fluid
-      document.title = @opts.title.replace '{{ name }}', state.name
       @_initStack()
-      #@currentPage.requestPage state
+      @currentPage.pageTitle state.name
       @currentPage.loadPage()
 
 
@@ -144,24 +143,7 @@ class Stack extends Widget
       @currentPage.request = null
 
 
-    if opts.replace
-      return false if @currentPage.unload() == false
-      for page, i in @stack
-        continue if page == @currentPage
-        $link = page.el.find '.link-page-behind'
-        pageUrl = simple.url $link.attr('href')
-        if pageUrl.pathname == url.pathname
-          page.el.nextAll('.page').remove()
-          @stack = @stack.slice(0, i + 1)
-          @currentPage = page
-          @currentPage.el.empty()
-          @currentPage.el.removeClass 'page-behind'
-          break
-
-      @currentPage.load url,
-        nocache: opts.nocache
-        norefresh: opts.norefresh
-    else if opts.root
+    if opts.root
       return false if @currentPage.unload() == false
       @el.empty()
       @el.toggleClass 'simple-stack-fluid', opts.fluid || false
@@ -183,10 +165,28 @@ class Stack extends Widget
       @currentPage.load url,
         nocache: opts.nocache
         norefresh: opts.norefresh
+
+    else if opts.replace
+      return false if @currentPage.unload() == false
+      for page, i in @stack
+        continue if page == @currentPage
+        $link = page.el.find '.link-page-behind'
+        pageUrl = simple.url $link.attr('href')
+        if pageUrl.pathname == url.pathname
+          page.el.nextAll('.page').remove()
+          @stack = @stack.slice(0, i + 1)
+          @currentPage = page
+          @currentPage.el.empty()
+          @currentPage.el.removeClass 'page-behind'
+          break
+
+      @currentPage.load url,
+        nocache: opts.nocache
+        norefresh: opts.norefresh
     else
       prevPage = @currentPage
       $prevPage = prevPage.el.children().first()
-      prevPageName = $prevPage.data('page-name')
+      prevPageName = $prevPage.data('page-name') || prevPage.pageTitle()
 
       return false if @currentPage.unload() == false
 
@@ -194,7 +194,7 @@ class Stack extends Widget
         'class': 'link-page-behind'
         'data-stack': ''
         href: simple.url().toString('relative')
-        text: prevPageName || document.title
+        text: prevPageName
       ).appendTo @currentPage.el
 
       if @el.hasClass 'simple-stack-fluid'
