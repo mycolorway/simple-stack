@@ -53,7 +53,6 @@ class Stack extends Widget
         @currentPage.el.empty()
         @currentPage.el.removeClass 'page-behind'
 
-
         @currentPage.load url,
           nocache: $link.is '[data-stack-nocache]'
           norefresh: $link.is '[data-stack-norefresh]'
@@ -106,9 +105,9 @@ class Stack extends Widget
     $page.addClass 'page-' + (if level < 1 then 'root' else level)
 
     if level < $pages.length - 1
-      $page.addClass 'page-behind'
+      $page.addClass 'page-behind page-unloaded'
     else
-      $page.removeClass 'page-behind'
+      $page.removeClass 'page-behind page-unloaded'
 
     pjax = simple.pjax
       el: $page

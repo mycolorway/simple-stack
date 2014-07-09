@@ -19,6 +19,9 @@
   transform: none;
   -webkit-transform: none;
 }
+.simple-stack .page.page-unloaded {
+  min-height: 9999px;
+}
 .simple-stack .page.page-behind {
   border: 1px solid #dddddd;
   background: #f9f9f9;
@@ -29,8 +32,8 @@
   top: 0;
   left: 0;
 }
-.simple-stack .page.pjax-loading {
-  height: 9999px;
+.simple-stack .page.page-behind.page-unloaded {
+  min-height: 600px;
 }
 .simple-stack .page > a.link-page-behind {
   display: block;

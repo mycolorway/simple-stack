@@ -25,6 +25,10 @@ $stack-header-height: 46px;
     transform: none;
     -webkit-transform: none;
 
+    &.page-unloaded {
+      min-height: 9999px;
+    }
+
     &.page-behind {
       border: 1px solid #dddddd;
       background: #f9f9f9;
@@ -34,10 +38,10 @@ $stack-header-height: 46px;
       position: absolute;
       top: 0;
       left: 0;
-    }
 
-    &.pjax-loading {
-      height: 9999px;
+      &.page-unloaded {
+        min-height: 600px;
+      }
     }
 
     & > a.link-page-behind {
