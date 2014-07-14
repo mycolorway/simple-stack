@@ -18,8 +18,10 @@
   position: relative;
   transform: none;
   -webkit-transform: none;
+  transform-origin: 50% 0 0;
+  -webkit-transform-origin: 50% 0 0;
 }
-.simple-stack .page.page-unloaded {
+.simple-stack .page.pjax-loading {
   min-height: 9999px;
 }
 .simple-stack .page.page-behind {
@@ -31,9 +33,6 @@
   position: absolute;
   top: 0;
   left: 0;
-}
-.simple-stack .page.page-behind.page-unloaded {
-  min-height: 600px;
 }
 .simple-stack .page > a.link-page-behind {
   display: block;
@@ -53,76 +52,86 @@
   /*-webkit-transform: scale(1.05);*/
 }
 .simple-stack .page.page-root.page-behind {
-  top: -2px;
+  top: 2px;
 }
 .simple-stack .page.page-1 {
+  top: 0;
   margin-top: 46px;
 }
 .simple-stack .page.page-1.page-behind {
-  top: 44px;
+  top: 48px;
   margin-top: 0;
 }
 .simple-stack .page.page-2 {
+  top: 0;
   margin-top: 92px;
 }
 .simple-stack .page.page-2.page-behind {
-  top: 90px;
+  top: 94px;
   margin-top: 0;
 }
 .simple-stack .page.page-3 {
+  top: 0;
   margin-top: 138px;
 }
 .simple-stack .page.page-3.page-behind {
-  top: 136px;
+  top: 140px;
   margin-top: 0;
 }
 .simple-stack .page.page-4 {
+  top: 0;
   margin-top: 184px;
 }
 .simple-stack .page.page-4.page-behind {
-  top: 182px;
+  top: 186px;
   margin-top: 0;
 }
 .simple-stack .page.page-5 {
+  top: 0;
   margin-top: 230px;
 }
 .simple-stack .page.page-5.page-behind {
-  top: 228px;
+  top: 232px;
   margin-top: 0;
 }
 .simple-stack .page.page-6 {
+  top: 0;
   margin-top: 276px;
 }
 .simple-stack .page.page-6.page-behind {
-  top: 274px;
+  top: 278px;
   margin-top: 0;
 }
 .simple-stack .page.page-7 {
+  top: 0;
   margin-top: 322px;
 }
 .simple-stack .page.page-7.page-behind {
-  top: 320px;
+  top: 324px;
   margin-top: 0;
 }
 .simple-stack .page.page-8 {
+  top: 0;
   margin-top: 368px;
 }
 .simple-stack .page.page-8.page-behind {
-  top: 366px;
+  top: 370px;
   margin-top: 0;
 }
 .simple-stack .page.page-9 {
+  top: 0;
   margin-top: 414px;
 }
 .simple-stack .page.page-9.page-behind {
-  top: 412px;
+  top: 416px;
   margin-top: 0;
 }
 .simple-stack .page.page-10 {
+  top: 0;
   margin-top: 460px;
 }
 .simple-stack .page.page-10.page-behind {
-  top: 458px;
+  top: 462px;
   margin-top: 0;
 }
 .simple-stack.simple-stack-fluid {
@@ -135,8 +144,8 @@
   background: none;
 }
 .simple-stack.simple-stack-transition .page {
-  transition-property: top, opacity, transform, box-shadow, border-color;
+  transition-property: top, margin-top, opacity, transform, box-shadow, border-color;
   transition-duration: 200ms;
-  -webkit-transition-property: top, opacity, -webkit-transform, box-shadow, border-color;
+  -webkit-transition-property: top, margin-top, opacity, -webkit-transform, box-shadow, border-color;
   -webkit-transition-duration: 200ms;
 }

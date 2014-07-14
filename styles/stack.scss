@@ -24,8 +24,10 @@ $stack-header-height: 46px;
     position: relative;
     transform: none;
     -webkit-transform: none;
+    transform-origin: 50% 0 0;
+    -webkit-transform-origin: 50% 0 0;
 
-    &.page-unloaded {
+    &.pjax-loading {
       min-height: 9999px;
     }
 
@@ -38,10 +40,6 @@ $stack-header-height: 46px;
       position: absolute;
       top: 0;
       left: 0;
-
-      &.page-unloaded {
-        min-height: 600px;
-      }
     }
 
     & > a.link-page-behind {
@@ -65,15 +63,16 @@ $stack-header-height: 46px;
     }
 
     &.page-root.page-behind {
-      top: -2px;
+      top: 2px;
     }
 
     @for $i from 1 through 10 {
       &.page-#{$i} {
+        top: 0;
         margin-top: $stack-header-height * $i;
 
         &.page-behind {
-          top: $stack-header-height * $i - 2px;
+          top: $stack-header-height * $i + 2px;
           margin-top: 0;
         }
       }
@@ -92,9 +91,9 @@ $stack-header-height: 46px;
   }
 
   &.simple-stack-transition .page {
-    transition-property: top, opacity, transform, box-shadow, border-color;
+    transition-property: top, margin-top, opacity, transform, box-shadow, border-color;
     transition-duration: 200ms;
-    -webkit-transition-property: top, opacity, -webkit-transform, box-shadow, border-color;
+    -webkit-transition-property: top, margin-top, opacity, -webkit-transform, box-shadow, border-color;
     -webkit-transition-duration: 200ms;
   }
 }
