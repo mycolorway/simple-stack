@@ -83,6 +83,7 @@ class Stack extends Widget
         @currentPage.request = null
 
       @el.html state.html
+      @el[0].offsetHeight
       @el.toggleClass 'simple-stack-fluid', state.fluid
       @_initStack()
       @currentPage.pageTitle state.name
