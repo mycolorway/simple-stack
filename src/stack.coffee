@@ -29,6 +29,9 @@ class Stack extends Widget
     @el.addClass 'simple-stack-transition' if @opts.transition
 
     $(document).off('click.stack').on 'click.stack', 'a[data-stack]', (e) =>
+      metaKey = if /Mac/.test(navigator.userAgent) then e.metaKey else e.ctrlKey
+      return if metaKey
+
       e.preventDefault()
       $link = $(e.currentTarget)
       url = simple.url $link.attr 'href'
