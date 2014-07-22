@@ -137,7 +137,7 @@ class Stack extends Widget
     $page.data 'pjax', pjax
     pjax
 
-  load: (url, opts) ->
+  load: (url, opts = {}) ->
     if typeof url == 'string'
       url = simple.url url
 
