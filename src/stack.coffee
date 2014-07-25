@@ -85,10 +85,18 @@ class Stack extends Widget
         @currentPage.request.abort()
         @currentPage.request = null
 
+
       @el.html state.html
-      @el[0].offsetHeight
       @el.toggleClass 'simple-stack-fluid', state.fluid
       @_initStack()
+
+      page = @currentPage.getCache state.url
+      unless page
+        location.reload()
+        return
+
+      @currentPage.el.html page.html
+      @el[0].offsetHeight
       @currentPage.pageTitle state.name
       @currentPage.loadPage()
 
@@ -121,11 +129,15 @@ class Stack extends Widget
       slowTime: @opts.slowTime
 
     pjax.on 'pushstate.pjax', (e, state) =>
-      state.html = @el.html()
+      $el = @el.clone()
+      $el.find('.page:last').empty()
+      state.html = $el.html()
       state.fluid = @el.hasClass('simple-stack-fluid')
 
     pjax.on 'replacestate.pjax', (e, state) =>
-      state.html = @el.html()
+      $el = @el.clone()
+      $el.find('.page:last').empty()
+      state.html = $el.html()
       state.fluid = @el.hasClass('simple-stack-fluid')
 
     pjax.on 'pjaxload', (e, $page, page) =>
