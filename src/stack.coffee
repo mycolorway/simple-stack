@@ -144,7 +144,7 @@ class Stack extends Widget
       @trigger 'pageload', [$page, page]
 
     pjax.on 'pjaxunload', (e, $page, page) =>
-      @trigger 'pageunload', [$page, page]
+      return @triggerHandler 'pageunload', [$page, page]
 
     $page.data 'pjax', pjax
     pjax
@@ -244,4 +244,5 @@ simple.stack = (opts) ->
   new Stack(opts)
 
 simple.stack.clearCache = Stack.clearCache
+
 
