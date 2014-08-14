@@ -81,10 +81,13 @@ class Stack extends Widget
       state = e.originalEvent.state
       return unless state
 
-      if @currentPage and @currentPage.request
-        @currentPage.request.abort()
-        @currentPage.request = null
+      if @currentPage 
+        if @triggerHandler('pageunload', [@currentPage.el.children().first(), @currentPage.getCache()]) == false
+          return
 
+        if @currentPage.request
+          @currentPage.request.abort()
+          @currentPage.request = null
 
       @el.html state.html
       @el.toggleClass 'simple-stack-fluid', state.fluid
