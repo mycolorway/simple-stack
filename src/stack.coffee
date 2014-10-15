@@ -1,5 +1,5 @@
 
-class Stack extends Widget
+class Stack extends SimpleModule
 
   opts:
     el: null
@@ -34,7 +34,7 @@ class Stack extends Widget
 
       e.preventDefault()
       $link = $(e.currentTarget)
-      url = simple.url $link.attr 'href'
+      url = simpleUrl $link.attr 'href'
       return unless url
 
       $pages = @el.find '.page'
@@ -124,7 +124,7 @@ class Stack extends Widget
     else
       $page.removeClass 'page-behind'
 
-    pjax = simple.pjax
+    pjax = simplePjax
       el: $page
       title: @opts.title
       autoload: false
@@ -154,7 +154,7 @@ class Stack extends Widget
 
   load: (url, opts = {}) ->
     if typeof url == 'string'
-      url = simple.url url
+      url = simpleUrl url
 
     if @currentPage.request
       @currentPage.request.abort()
@@ -189,7 +189,7 @@ class Stack extends Widget
       for page, i in @stack
         continue if page == @currentPage
         $link = page.el.find '.link-page-behind'
-        pageUrl = simple.url $link.attr('href')
+        pageUrl = simpleUrl $link.attr('href')
         if pageUrl.pathname == url.pathname
           page.el.nextAll('.page').remove()
           @stack = @stack.slice(0, i + 1)
@@ -211,7 +211,7 @@ class Stack extends Widget
       $link = $('<a/>', 
         'class': 'link-page-behind'
         'data-stack': ''
-        href: simple.url().toString('relative')
+        href: simpleUrl().toString('relative')
         text: prevPageName
       ).appendTo @currentPage.el
 
@@ -237,15 +237,12 @@ class Stack extends Widget
       prevPage.el.height ''
 
   @clearCache: (url) ->
-    simple.pjax.clearCache url
+    simplePjax.clearCache url
 
 
-
-window.simple ||= {}
-
-simple.stack = (opts) ->
+stack = (opts) ->
   new Stack(opts)
 
-simple.stack.clearCache = Stack.clearCache
+stack.clearCache = Stack.clearCache
 
 
