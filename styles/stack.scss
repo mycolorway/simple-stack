@@ -15,7 +15,7 @@ $stack-header-height: 46px;
   }
 
   .page {
-    width: 960px;
+    width: 100%;
     min-height: 600px;
     border: 1px solid #dbdfd6;
     box-shadow: 0 0 5px rgba(0,0,0,0.15);
@@ -56,12 +56,6 @@ $stack-header-height: 46px;
       }
     }
 
-    &.transition-start {
-      /*opacity: 0;*/
-      /*transform: scale(1.05);*/
-      /*-webkit-transform: scale(1.05);*/
-    }
-
     &.page-root.page-behind {
       top: 2px;
     }
@@ -91,10 +85,10 @@ $stack-header-height: 46px;
   }
 
   &.simple-stack-transition .page {
-    transition-property: top, margin-top, opacity, transform, box-shadow, border-color;
-    transition-duration: 200ms;
-    -webkit-transition-property: top, margin-top, opacity, -webkit-transform, box-shadow, border-color;
+    -webkit-transition-property: top, margin-top, opacity, -webkit-transform, box-shadow;
     -webkit-transition-duration: 200ms;
+    transition-property: top, margin-top, opacity, transform, box-shadow;
+    transition-duration: 200ms;
   }
 }
 

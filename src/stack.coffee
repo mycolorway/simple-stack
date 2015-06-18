@@ -81,7 +81,7 @@ class Stack extends SimpleModule
       state = e.originalEvent.state
       return unless state
 
-      if @currentPage 
+      if @currentPage
         if @triggerHandler('pageunload', [@currentPage.el.children().first(), @currentPage.getCache()]) == false
           return
 
@@ -208,7 +208,7 @@ class Stack extends SimpleModule
 
       return false if @currentPage.unload() == false
 
-      $link = $('<a/>', 
+      $link = $('<a/>',
         'class': 'link-page-behind'
         'data-stack': ''
         href: simpleUrl().toString('relative')
