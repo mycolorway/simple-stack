@@ -75,13 +75,6 @@ $stack-header-height: 46px;
 
   &.simple-stack-fluid {
     width: auto;
-
-    .page {
-      width: auto;
-      border: none;
-      box-shadow: none;
-      background: none;
-    }
   }
 
   &.simple-stack-transition .page {

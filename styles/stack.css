@@ -132,12 +132,6 @@
 .simple-stack.simple-stack-fluid {
   width: auto;
 }
-.simple-stack.simple-stack-fluid .page {
-  width: auto;
-  border: none;
-  box-shadow: none;
-  background: none;
-}
 .simple-stack.simple-stack-transition .page {
   -webkit-transition-property: top, margin-top, opacity, -webkit-transform, box-shadow;
   -webkit-transition-duration: 200ms;
