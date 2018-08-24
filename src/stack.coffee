@@ -34,7 +34,7 @@ class Stack extends SimpleModule
 
       e.preventDefault()
       $link = $(e.currentTarget)
-      url = simpleUrl $link.attr 'href'
+      url = simple.url $link.attr 'href'
       return unless url
 
       $pages = @el.find '.page'
@@ -124,7 +124,7 @@ class Stack extends SimpleModule
     else
       $page.removeClass 'page-behind'
 
-    pjax = simplePjax
+    pjax = simple.pjax
       el: $page
       title: @opts.title
       autoload: false
@@ -147,14 +147,14 @@ class Stack extends SimpleModule
       @trigger 'pageload', [$page, page, xhr]
 
     pjax.on 'pjaxunload', (e, $page, page) =>
-      return @triggerHandler 'pageunload', [$page, page]
+      @triggerHandler 'pageunload', [$page, page]
 
     $page.data 'pjax', pjax
     pjax
 
   load: (url, opts = {}) ->
     if typeof url == 'string'
-      url = simpleUrl url
+      url = simple.url url
 
     if @currentPage.request
       @currentPage.request.abort()
@@ -189,7 +189,7 @@ class Stack extends SimpleModule
       for page, i in @stack
         continue if page == @currentPage
         $link = page.el.find '.link-page-behind'
-        pageUrl = simpleUrl $link.attr('href')
+        pageUrl = simple.url $link.attr('href')
         if pageUrl.pathname == url.pathname
           page.el.nextAll('.page').remove()
           @stack = @stack.slice(0, i + 1)
@@ -211,7 +211,7 @@ class Stack extends SimpleModule
       $link = $('<a/>',
         'class': 'link-page-behind'
         'data-stack': ''
-        href: simpleUrl().toString('relative')
+        href: simple.url().toString('relative')
         text: prevPageName
       ).appendTo @currentPage.el
 
@@ -237,7 +237,7 @@ class Stack extends SimpleModule
       prevPage.el.height ''
 
   @clearCache: (url) ->
-    simplePjax.clearCache url
+    simple.pjax.clearCache url
 
 
 stack = (opts) ->
