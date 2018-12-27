@@ -2,7 +2,7 @@
   "name": "simple-stack",
   "version": "2.0.3",
   "description": "A stack layout component",
-  "main": "demo.html",
+  "main": "lib/stack.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/mycolorway/simple-stack"
