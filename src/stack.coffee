@@ -153,6 +153,7 @@ class Stack extends SimpleModule
     pjax
 
   load: (url, opts = {}) ->
+    return unless @currentPage
     if typeof url == 'string'
       url = simple.url url
 
