@@ -45,7 +45,7 @@ class Stack extends SimpleModule
       level = $pages.index $page
       page = $page.data 'pjax'
 
-      if page != @currentPage
+      if page and page != @currentPage
         return false if @currentPage.unload() == false
         if $page.hasClass('page-root') and $link.is('[data-stack-fluid]')
           @el.addClass 'simple-stack-fluid'
