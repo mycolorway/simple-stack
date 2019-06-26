@@ -143,6 +143,9 @@ class Stack extends SimpleModule
       state.html = $el.html()
       state.fluid = @el.hasClass('simple-stack-fluid')
 
+    pjax.on 'pjaxbeforeload', (e, page) =>
+      @trigger 'pagebeforeload', [page]
+
     pjax.on 'pjaxload', (e, $page, page, xhr) =>
       @trigger 'pageload', [$page, page, xhr]
 
