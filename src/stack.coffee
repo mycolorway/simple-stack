@@ -7,6 +7,7 @@ class Stack extends SimpleModule
     transition: true
     slowTime: 800
     fluid: false
+    fullscreen: false
 
   supportHistory: !!(window.history && history.pushState)
 
@@ -17,9 +18,11 @@ class Stack extends SimpleModule
     return unless @el.length > 0
 
     @opts.fluid = true if @el.is '[data-stack-fluid]'
+    @opts.fullscreen = true if @el.is '[data-stack-fullscreen]'
 
     @el.addClass 'simple-stack'
     @el.addClass 'simple-stack-fluid' if @opts.fluid
+    @el.addClass 'simple-stack-fullscreen' if @opts.fullscreen
 
     @stack = []
     @_initStack()
