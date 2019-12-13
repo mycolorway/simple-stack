@@ -47,8 +47,11 @@ class Stack extends SimpleModule
 
       if page and page != @currentPage
         return false if @currentPage.unload() == false
-        if $page.hasClass('page-root') and $link.is('[data-stack-fluid]')
-          @el.addClass 'simple-stack-fluid'
+        if $page.hasClass('page-root')
+          if $link.is('[data-stack-fluid]')
+            @el.addClass 'simple-stack-fluid'
+          if $link.is('[data-stack-fullscreen]')
+            @el.addClass 'simple-stack-fullscreen'
 
         $page.nextAll('.page').remove()
         @stack = @stack.slice(0, level + 1)
@@ -74,6 +77,7 @@ class Stack extends SimpleModule
         norefresh: $link.is '[data-stack-norefresh]'
         root: $link.is '[data-stack-root]'
         fluid: $link.is '[data-stack-fluid]'
+        fullscreen: $link.is '[data-stack-fullscreen]'
         parent: parent
 
 
@@ -90,7 +94,8 @@ class Stack extends SimpleModule
           @currentPage.request = null
 
       @el.html state.html
-      @el.toggleClass 'simple-stack-fluid', state.fluid
+      @el.toggleClass('simple-stack-fluid', state.fluid)
+      @el.toggleClass('simple-stack-fullscreen', state.fullscreen)
       @_initStack()
 
       page = @currentPage.getCache state.url
@@ -136,12 +141,14 @@ class Stack extends SimpleModule
       $el.find('.page:last').empty()
       state.html = $el.html()
       state.fluid = @el.hasClass('simple-stack-fluid')
+      state.fullscreen = @el.hasClass('simple-stack-fullscreen')
 
     pjax.on 'replacestate.pjax', (e, state) =>
       $el = @el.clone()
       $el.find('.page:last').empty()
       state.html = $el.html()
       state.fluid = @el.hasClass('simple-stack-fluid')
+      state.fullscreen = @el.hasClass('simple-stack-fullscreen')
 
     pjax.on 'pjaxbeforeload', (e, page) =>
       @trigger 'pagebeforeload', [page]
@@ -168,7 +175,8 @@ class Stack extends SimpleModule
     if opts.root
       return false if @currentPage.unload() == false
       @el.empty()
-      @el.toggleClass 'simple-stack-fluid', opts.fluid || false
+      @el.toggleClass('simple-stack-fluid', opts.fluid || false)
+      @el.toggleClass('simple-stack-fullscreen', opts.fullscreen || false)
       $page = $('<div class="page" />')
 
       if opts.parent
@@ -222,6 +230,10 @@ class Stack extends SimpleModule
       if @el.hasClass 'simple-stack-fluid'
         $link.attr 'data-stack-fluid', ''
         @el.removeClass 'simple-stack-fluid'
+
+      if @el.hasClass 'simple-stack-fullscreen'
+        $link.attr 'data-stack-fullscreen', ''
+        @el.removeClass 'simple-stack-fullscreen'
 
       $page = $('<div class="page"/>')
         .addClass('transition-start')
