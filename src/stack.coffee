@@ -81,6 +81,7 @@ class Stack extends SimpleModule
         root: $link.is '[data-stack-root]'
         fluid: $link.is '[data-stack-fluid]'
         fullscreen: $link.is '[data-stack-fullscreen]'
+        scrollPosition: $link.is '[data-stack-scroll-position]'
         parent: parent
 
 
@@ -198,6 +199,7 @@ class Stack extends SimpleModule
       @currentPage.load url,
         nocache: opts.nocache
         norefresh: opts.norefresh
+        scrollPosition: opts.scrollPosition
 
     else if opts.replace
       return false if @currentPage.unload() == false
@@ -216,6 +218,7 @@ class Stack extends SimpleModule
       @currentPage.load url,
         nocache: opts.nocache
         norefresh: opts.norefresh
+        scrollPosition: opts.scrollPosition
     else
       prevPage = @currentPage
       $prevPage = prevPage.el.children().first()
@@ -252,6 +255,7 @@ class Stack extends SimpleModule
       @currentPage.load url,
         nocache: opts.nocache
         norefresh: opts.norefresh
+        scrollPosition: opts.scrollPosition
 
       prevPage.el.height ''
 
